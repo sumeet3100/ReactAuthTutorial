@@ -66,12 +66,9 @@ returnKeyType = 'next'
 const styles = {
   viewStyle:{
     backgroundColor: '#F8F8F8',
-
-
     paddingTop:15,
-
       shadowColor: '#000',
-  shadowOffset:{ width:0, height: 2},
+      shadowOffset:{ width:0, height: 2},
     shadowOpacity:0.5,
     elevation:2,
     position: 'relative'
@@ -95,9 +92,6 @@ const styles = {
     justifyContent: 'center',
     borderRadius: 5
   }
-
-
-
 };
 
 // Make the componenet aviable for other parts of the app.

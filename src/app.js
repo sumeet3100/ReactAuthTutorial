@@ -12,7 +12,7 @@ class App extends Component {
           <Header headerText =" Authentication "  />
             <View style={{flex:1,justifyContent:'center',backgroundColor:'gray'}}>
 
-            <LoginForm buttonTitle = {"Log in"} mailIdText = {"E-mail id"} mailPassword = {"Password"} checked = {false} />
+            <LoginForm buttonTitle = {"sumeet in"} mailIdText = {"E-mail id"} mailPassword = {"Password"} checked = {false} />
 
             </View>
         </View>
