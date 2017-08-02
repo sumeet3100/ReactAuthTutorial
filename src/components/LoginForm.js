@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Card, CardComponent,Input} from './common';
+import {Card, CardComponent,Input, Spinner} from './common';
 import { Button } from 'react-native-elements';
-import { Alert, StyleSheet } from 'react-native';
+import { Alert, StyleSheet,Keyboard } from 'react-native';
 import Fetch from 'react-native-fetch';
 
 
@@ -10,11 +10,11 @@ class LoginForm extends Component{
   constructor(props){
     super(props)
   }
-  state ={email: '', password: ''};
+  state ={email: '', password: '', loading: false};
   // custom function
    onLoginButton(email,password) {
      console.log("in login function "+email+" <> "+password);
-
+     Keyboard.dismiss();
      if(email == '' && password == ''){
         console.log("empty mail id");
         Alert.alert('Please enter email id and password.')
@@ -26,6 +26,9 @@ class LoginForm extends Component{
         console.log("password empty");
         Alert.alert('Please enter password.')
      }
+
+     this.setState({loading: true});
+
 fetch('http://52.39.212.226:4075/users/userlogin', {
   method: 'POST',
   headers: {
@@ -40,6 +43,7 @@ fetch('http://52.39.212.226:4075/users/userlogin', {
 }).then((response) => response.json())
       .then((response) => {
                 console.log("log is out"+ response);
+                   this.setState({loading: false, email: '', password: ''});
         }, function() {
           // do something with new state
         });
@@ -47,6 +51,18 @@ fetch('http://52.39.212.226:4075/users/userlogin', {
 
 
   }
+
+
+  renderButton(){
+
+    if(this.state.loading){
+
+      return <Spinner size="small"/>;
+    }
+
+
+  }
+
 
   render(){
     return(
@@ -78,6 +94,11 @@ fetch('http://52.39.212.226:4075/users/userlogin', {
           title={this.props.buttonTitle}
           onPress={()=>this.onLoginButton(this.state.email,this.state.password)}
         />
+
+        <CardComponent>
+          {this.renderButton()}
+          </CardComponent>
+
 
       </Card>
     );
